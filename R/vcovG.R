@@ -38,12 +38,10 @@ vcovG.plm <-function(x,type=c("HC0", "sss", "HC1", "HC2", "HC3", "HC4"),
   ##
   ## This version: as July 28th 2011, + 'sss' December 18th, 2013 (!)
 
-    
-    ## control: no method for IV models, for now
-    if(length(formula(x))[2] == 2) stop("Method not available for IV")
 
     type <- match.arg(type)
-    model <- describe(x, "model")
+  model <- plm:::describe(x, "model")
+  effect <- plm:::describe(x, "effect")  
     if (!model %in% c("random", "within", "pooling", "fd")) {
         stop("Model has to be either random, within, pooling or fd model")
     }
